@@ -1,0 +1,8 @@
+<div>
+	<% if (view.hasIcon()) { %>
+		<span class="icon <%= view.getIconClass() %>"></span>
+	<% } %>
+	<% if (view.hasLabel()) { %>
+		<span class="label"><%= view.getLabel() %></span>
+	<% } %>
+</div>

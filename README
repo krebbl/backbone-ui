@@ -1,0 +1,12 @@
+Backbone-UI
+======================
++ based on Backbone.js, Underscrore.js
++ Supported Componentes
+  - ListView
+  - ContainerView
+  - ScrollView
+  - SplitView
+  - WorkspaceView
+  - Dialogs
+  - InputViews  
++ Supports Property Binding

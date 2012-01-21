@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<title>BackboneUI.js</title>
+		<style>
+			body {
+				font-size: 16px;
+				line-height: 24px;
+				background: #FEF3CA;
+				color: #022;
+				height: 100%;
+				font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;
+			}
+			div.container {
+				width: 720px;
+				margin: 50px 0 50px 50px;
+			}
+			p, li {
+				margin: 16px 0 16px 0;
+				width: 550px;
+			}
+			p.break {
+				margin-top: 35px;
+			}
+			ol {
+				padding-left: 24px;
+			}
+			ol li {
+				font-weight: bold;
+				margin-left: 0;
+			}
+			a, a:visited {
+				padding: 0 2px;
+				text-decoration: none;
+				background: #f0c095;
+				color: #252519;
+			}
+			a:active, a:hover {
+				color: #FFF;
+				background: #C25D00;
+			}
+			h1, h2, h3, h4, h5, h6 {
+				margin-top: 40px;
+			}
+			b.header {
+				font-size: 18px;
+			}
+			span.alias {
+				font-size: 14px;
+				font-style: italic;
+				margin-left: 20px;
+			}
+			table {
+				margin: 16px 0;
+				padding: 0;
+			}
+			tr, td, th {
+				margin: 0;
+				padding: 0;
+				text-align: left;
+			}
+			th {
+				padding: 24px 0 0;
+			}
+			tr:first-child th {
+				padding-top: 0;
+			}
+			td {
+				padding: 6px 15px 6px 0;
+			}
+			td.definition {
+				line-height: 18px;
+				font-size: 14px;
+			}
+			table.downloads td {
+				padding-left: 18px;
+			}
+			.demo-hint {
+				font-size: 13px;
+				margin: 0 0 12px 12px;
+				font-weight: normal;
+			}
+			#VS code, #VS pre, #VS tt {
+				font-family: Monaco, Consolas, "Lucida Console", monospace;
+				font-size: 12px;
+				line-height: 18px;
+				color: #444;
+				background: none;
+			}
+			#VS code {
+				margin-left: 8px;
+				padding: 0 0 0 12px;
+				font-weight: normal;
+			}
+			#VS pre {
+				font-size: 12px;
+				padding: 2px 0 2px 0;
+				border-left: 6px solid #829C37;
+				margin: 12px 0;
+			}
+			#search_query {
+				margin: 18px 0;
+				opacity: 0;
+			}
+			#search_query .raquo {
+				font-size: 18px;
+				line-height: 12px;
+				font-weight: bold;
+				margin-right: 4px;
+			}
+			#search_query2 {
+				margin: 18px 0;
+				opacity: 0;
+			}
+			#search_query2 .raquo {
+				font-size: 18px;
+				line-height: 12px;
+				font-weight: bold;
+				margin-right: 4px;
+			}
+			.main {
+				background: yellow;
+			}
+		</style>
+		<link rel="stylesheet" href="lib/css/slick.grid.css" type="text/css" media="screen" charset="utf-8">
+		<link rel="stylesheet" href="lib/css/ui-lightness/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" charset="utf-8">
+		<script src="vendor/jquery-1.6.1.js" type="text/javascript" charset="utf-8"></script>
+		<!-- <script src="vendor/backported/jquery-1.4.4.js" type="text/javascript" charset="utf-8"></script> -->
+		<script src="vendor/jquery.ui.core.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vendor/jquery-ui-1.8.16.custom.min.js" type="text/javascript" charset="UTF-8"></script>
+		<script src="vendor/underscore-1.1.5.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vendor/backbone-0.5.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vendor/slickgrid/jquery.event.drag-2.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vendor/slickgrid/slick.grid.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vendor/slickgrid/slick.model.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vendor/slickgrid/slick.rowselectionmodel.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/js/templates/templates.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/js/ui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/js/utils/binding.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/js/utils/locale.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/js/views/view.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/js/views/scroll_view.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/js/views/list_view.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/js/views/container_view.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/js/views/split_view.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/js/views/workspace_view.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/js/views/table_view.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="container" id="UI">
+			<h2>SplitView with a ScrollView and a TableView (SlickGrid) <span class="demo-hint"><i>For more config options look at SlickGrid page</i></span></h2>
+			<div id="split-view-container" style="height: 400px;"></div>
+			<script>
+				$(document).ready(function() {
+					var columns = [{
+						id : 'id',
+						field : 'id',
+						name : 'id',
+						width : 50
+					}, {
+						id : 'firstname',
+						field : 'firstname',
+						name : 'Firstname',
+						sortable : true,
+						width : 150
+					}, {
+						id : 'lastname',
+						field : 'lastname',
+						name : 'Lastname',
+						sortable : true,
+						width : 150
+					}];
+					var items = [{
+						id : 1,
+						firstname : 'Bob',
+						lastname : 'Dylan'
+					}, {
+						id : 2,
+						firstname : 'Charlie',
+						lastname : 'Sheen'
+					}, {
+						id : 3,
+						firstname : 'David',
+						lastname : 'Duchovny'
+					}];
+					var tableView = new UI.TableView({
+						fitLayout : true,
+						container : $('#split-view-container'),
+						columns : columns,
+						items : items
+
+					});
+
+					tableView.render();
+					
+					/*
+					var grid = new Slick.Grid($('#split-view-container').resizable(), items, columns, {
+						enableAsyncPostRender : true,
+						asyncPostRenderDelay : 10,
+						forceFitColumns : true,
+						multiSelect : true
+					}); */
+				});
+
+			</script>
+		</div>
+	</body>
+</html>

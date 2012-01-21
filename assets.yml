@@ -1,0 +1,35 @@
+embed_assets:           datauri
+javascript_compressor:  closure
+template_function:      _.template
+gzip_assets:            <% if $VS_MIN %>on<% else %>off<% end %>
+compress_assets:        <% if $VS_MIN %>on<% else %>off<% end %>
+
+javascripts:
+  backbone-ui-dependencies:
+    - vendor/jquery-*.js
+    - vendor/jquery.ui.core.js
+    - vendor/jquery.ui.widget.js
+    - vendor/jquery.ui.position.js
+    - vendor/jquery.ui.*.js
+    - vendor/underscore.js
+    - vendor/backbone.js
+    - vendor/date.js
+    - vendor/slickgrid/*.js
+    - vendor/jquery.qtip.*.js
+  backbone-ui:
+    - lib/js/ui.js
+    - lib/js/utils/*.js
+    - lib/js/mixins/*.js
+    - lib/js/views/view.js
+    - lib/js/views/list_view.js
+    - lib/js/views/field_view.js
+    - lib/js/views/*.js
+    - lib/js/views/fields/*.js
+  <% unless $VS_MIN %>backbone-ui-templates:
+    - lib/js/templates/*.jst
+    - lib/js/templates/fields/*.jst
+  <% end %>
+
+stylesheets:
+  backbone-ui:
+    - lib/css/*.css
