@@ -1,6 +1,6 @@
 Backbone-UI
 ======================
-+ based on Backbone.js, Underscrore.js
++ based on Backbone.js, Underscrore.js, jQuery, jQuery UI, SlickGrid and some other ...
 + Supported Componentes
   - ListView
   - ContainerView
@@ -8,5 +8,10 @@ Backbone-UI
   - SplitView
   - WorkspaceView
   - Dialogs
-  - InputViews  
+  - InputViews
 + Supports Property Binding
+
+TODO:
+======================
++ Writing Tests
++ Writing Docu
