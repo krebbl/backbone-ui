@@ -39,6 +39,24 @@ task :build do
   
 end
 
+desc "Build for mobile"
+task :build_mobile do 
+  $VS_MIN = false
+  Jammit.package!({
+    :config_path   => "assets-mobile.yml",
+    :output_folder => "build-mobile"
+  })
+  
+  $VS_MIN = true
+  Jammit.package!({
+    :config_path   => "assets-mobile.yml",
+    :output_folder => "build-mobile-min"
+  })
+  
+  # Move the JSTs back to lib to accomodate the demo page.
+  # FileUtils.mv("build/backbone-ui-templates.js", "lib/js/templates/templates.js")
+end
+
 desc "Build the docco documentation"
 task :docs do
   sh "docco lib/js/*.js lib/js/**/*.js"

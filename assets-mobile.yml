@@ -1,0 +1,27 @@
+embed_assets:           datauri
+javascript_compressor:  closure
+template_function:      _.template
+gzip_assets:            <% if $VS_MIN %>on<% else %>off<% end %>
+compress_assets:        <% if $VS_MIN %>on<% else %>off<% end %>
+
+javascripts:
+  backbone-ui-dependencies:
+    - vendor/jquery-1.7.js
+    - vendor/underscore.js
+    - vendor/backbone.js
+    - vendor/date.js
+  backbone-ui-mobile:
+    - lib/js/ui.js
+    - lib/js/utils/*.js
+    - lib/js/views/view.js
+    - lib/js/views/list_view.js
+    - lib/js/views/container_view.js
+    - lib/js/views/field_view.js
+    - lib/js/views/link_view.js
+    - lib/js/views/button_view.js
+    - lib/js/views/segmented_view.js
+    - lib/js/views/tab_view.js
+    - lib/js/views/fields/*.js
+stylesheets:
+  backbone-ui:
+    - lib/css/*.css

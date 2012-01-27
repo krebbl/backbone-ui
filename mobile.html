@@ -125,35 +125,18 @@
 			}
 		</style>
 		<link rel="stylesheet" href="lib/css/ui.css" type="text/css" media="screen" charset="utf-8">
-		<link rel="stylesheet" href="lib/css/slick.grid.css" type="text/css" media="screen" charset="utf-8">
-		<link rel="stylesheet" href="lib/css/jquery.qtip.min.css" type="text/css" media="screen" charset="utf-8">
 		<script src="vendor/jquery-1.7.js" type="text/javascript" charset="utf-8"></script>
 		<!-- <script src="vendor/backported/jquery-1.4.4.js" type="text/javascript" charset="utf-8"></script> -->
-		<script src="vendor/jquery.ui.core.js" type="text/javascript" charset="utf-8"></script>
-		<script src="vendor/jquery.ui.widget.js" type="text/javascript" charset="utf-8"></script>
-		<script src="vendor/jquery.ui.position.js" type="text/javascript" charset="utf-8"></script>
-		<script src="vendor/jquery.ui.autocomplete.js" type="text/javascript" charset="utf-8"></script>
-		<script src="vendor/jquery-ui-1.8.16.custom.min.js" type="text/javascript" charset="UTF-8"></script>
 		<script src="vendor/underscore.js" type="text/javascript" charset="utf-8"></script>
 		<script src="vendor/backbone.js" type="text/javascript" charset="utf-8"></script>
 		<script src="vendor/date.js" type="text/javascript" charset="utf-8"></script>
-		<script src="vendor/slickgrid/jquery.event.drag-2.0.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="vendor/slickgrid/slick.grid.js" type="text/javascript" charset="utf-8"></script>
-		<script src="vendor/slickgrid/slick.model.js" type="text/javascript" charset="utf-8"></script>
-		<script src="vendor/slickgrid/slick.rowselectionmodel.js" type="text/javascript" charset="utf-8"></script>
-		<script src="vendor/jquery.qtip.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="lib/js/templates/templates.js" type="text/javascript" charset="utf-8"></script>
 		<script src="lib/js/ui.js" type="text/javascript" charset="utf-8"></script>
 		<script src="lib/js/utils/binding.js" type="text/javascript" charset="utf-8"></script>
 		<script src="lib/js/utils/locale.js" type="text/javascript" charset="utf-8"></script>
 		<script src="lib/js/views/view.js" type="text/javascript" charset="utf-8"></script>
-		<script src="lib/js/mixins/loading_mask.js" type="text/javascript" charset="utf-8"></script>
-		<script src="lib/js/views/scroll_view.js" type="text/javascript" charset="utf-8"></script>
 		<script src="lib/js/views/list_view.js" type="text/javascript" charset="utf-8"></script>
 		<script src="lib/js/views/container_view.js" type="text/javascript" charset="utf-8"></script>
-		<script src="lib/js/views/split_view.js" type="text/javascript" charset="utf-8"></script>
-		<script src="lib/js/views/workspace_view.js" type="text/javascript" charset="utf-8"></script>
-		<script src="lib/js/views/slick_grid_view.js" type="text/javascript" charset="utf-8"></script>
 		<script src="lib/js/views/segmented_view.js" type="text/javascript" charset="utf-8"></script>
 		<script src="lib/js/views/tab_view.js" type="text/javascript" charset="utf-8"></script>
 		<script src="lib/js/views/button_view.js" type="text/javascript" charset="utf-8"></script>
@@ -167,7 +150,6 @@
 		<script src="lib/js/views/fields/checkbox_field_view.js" type="text/javascript" charset="utf-8"></script>
 		<script src="lib/js/views/fields/select_field_view.js" type="text/javascript" charset="utf-8"></script>
 		<script src="lib/js/views/fields/radiobox_field_view.js" type="text/javascript" charset="utf-8"></script>
-		<script src="lib/js/views/dialog_view.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<div class="container" id="UI">
@@ -204,7 +186,7 @@
 					})
 
 					view.render();
-					/*
+					
 					setInterval(function() {
 						var elements = model.get('elements');
 						if(elements.length < 7)
@@ -215,12 +197,12 @@
 						model.set({
 							elements : elements
 						});
-					}, 3000);*/
+					}, 3000);
 				});
 
 			</script>
 			<h2>ScrollView with ListView</h2>
-			<div id="scroll-view-container" style="height: 150px;"></div>
+			<div id="list-view-container" style="height: 150px;"></div>
 			<script>
 				$(document).ready(function() {
 					var listView = new UI.ListView({
@@ -232,33 +214,19 @@
 								innerHTML : item
 							})
 						},
-						container : $('#scroll-view-container'),
+						container : $('#list-view-container'),
 					});
-					
-					/*
-					var view = new UI.ScrollView({
-						fitLayout : true,
-						className : 'main',
-						container : $('#scroll-view-container'),
-						contentView : listView
-					})*/
 
 					listView.render();
-					
-					/*
-					setInterval(function() {
-						if(listView.getSize() < 10) {
-							listView.renderItem("Peter");
-						}
-					}, 2000) */
 				});
 
 			</script>
-			<h2>SplitView with a ScrollView and a SlickGridView (SlickGrid) <span class="demo-hint"><i>For more config options look at SlickGrid page</i></span></h2>
-			<div id="split-view-container" style="height: 400px;"></div>
+			<h2>A TabView</h2>
+			<div id="tab-view-container" style="height: auto;"></div>
 			<script>
 				$(document).ready(function() {
 					var listView = new UI.ListView({
+						title: 'Tab2',
 						items : ["Adam", "Bob", "Charlie", "David", "Erwin", "Frida", "Guy"],
 						itemToView : function(item) {
 							return new UI.View({
@@ -268,68 +236,67 @@
 							})
 						}
 					});
-					var scrollView = new UI.ScrollView({
-						className : 'main',
-						contentView : listView,
-						callbacks : {
-							'scrollBottom' : function() {
-								alert("Reached Bottom");
-							},
-							'scrollTop' : function() {
-								alert("Reached Top");
-							}
-						}
-					})
 
-					var tableView = new UI.SlickGridView({
-						container : $('#split-view-container').resizable(),
-						columns : [{
-							id : 'id',
-							field : 'id',
-							name : 'id',
-							width : 50
-						}, {
-							id : 'firstname',
-							field : 'firstname',
-							name : 'Firstname',
-							sortable : true,
-							width : 150
-						}, {
-							id : 'lastname',
-							field : 'lastname',
-							name : 'Lastname',
-							sortable : true,
-							width : 150
-						}],
-						items : [{
-							id : 1,
-							firstname : 'Bob',
-							lastname : 'Dylan'
-						}, {
-							id : 2,
-							firstname : 'Charlie',
-							lastname : 'Sheen'
-						}, {
-							id : 3,
-							firstname : 'David',
-							lastname : 'Duchovny'
-						}]
-
+					var tabView = new UI.TabView({
+						fitLayout : true,
+						container : $("#tab-view-container"),
+						tabViews : [new UI.View({
+							title : 'Tab1',
+							innerHTML : 'Tab Content'
+						}), listView, new UI.View({
+							title : 'Tab3',
+							innerHTML : 'Tab Content 3'
+						})]
 					});
 
-					var view = new UI.SplitView({
-						fitLayout : true,
-						container : $('#split-view-container').resizable(),
-						leftView : scrollView,
-						rightView : tableView,
-						resizable : true
-					})
-
-					view.render();
-
+					tabView.render();
 				});
 
 			</script>
-		</div>
+			<h2>A Simple NavigationBar with Dropdowns</h2>
+			<div id="nav-view-container" style="height: auto;"></div>
+			<script>
+				$(document).ready(function() {
+					var navView = new UI.ListView({
+						container : $("#nav-view-container"),
+						title: 'Tab2',
+						items : ["Home", "Link1", "Link2", "Link3", "Link4", {
+							label: 'Dropdown',
+							subitems: [
+								'Sublink 1',
+								'Sublink 2',
+								'Sublink 3'
+							]
+						}],
+						itemToView : function(item) {
+							if(_.isString(item)){
+								return new UI.LinkView({
+									height : 30,
+									innerHTML : item
+								})
+							}else{
+								return new UI.LinkView({
+									height: 30,
+									innerHTML: item.label,
+									menuView: new UI.ListView({
+										items: item.subitems,
+										itemToView: function(subitem){
+											return new UI.LinkView({
+												height : 30,
+												innerHTML : item
+											})
+										}
+									})
+									
+								})
+							}
+							
+						}
+					});
+
+					navView.render();
+				});
+
+			</script>
 	</body>
 </html>
