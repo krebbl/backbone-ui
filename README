@@ -1,4 +1,6 @@
-Backbone-UI
+Backbone-UI is DEPRECATED . If you're interested in Javascript MVC-Frameworks, please check out **rAppid.js**
+
+Backbone-UI 
 ======================
 + based on Backbone.js, Underscrore.js, jQuery, jQuery UI, SlickGrid and some other ...
 + Supported Componentes
@@ -10,8 +12,3 @@ Backbone-UI
   - Dialogs
   - InputViews
 + Supports Property Binding
-
-TODO:
-======================
-+ Writing Tests
-+ Writing Docu
